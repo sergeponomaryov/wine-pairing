@@ -7,21 +7,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
     
     <!-- import the webpage's javascript file -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex"></script>
     <script src="/script.js" type="module" defer></script>
   </head>  
   <body>
-    <h1>Hi there!</h1>
+    <div class="center" id="vapp" v-cloak>
+      <transition name="fade" mode="out-in" appear>
+      <div v-if="step == 1" key="1">
+        <h1>Hi! What are you eating? 😋</h1>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.main" @click="step = 2;">{{ item.label }}</button>
+      </div>
+      <div v-if="step == 2" key="2">
+        <h1>What are you having it with? 🤔</h1>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.secondary" @click="step = 3;">{{ item.label }}</button>
+      </div>
+      <div v-if="step == 3" key="3">
+        <h1>How is it prepared? 👨‍🍳</h1>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.prep" @click="step = 4;">{{ item.label }}</button>
+      </div>
+      <div v-if="step == 4" key="4">
+        <h1>Any spices? 🌶</h1>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.spice" @click="step = 5;">{{ item.label }}</button>
+      </div>
+      </transition>
+    </div>
     
-    <p>
-      I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch</a>!
-    </p>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
+    <script type="module">
+      import data from '/data.js';
+      const vueApp = new Vue({
+        el: '#vapp',
+        data: { 
+         ingredients: {
+           main: data.ingredients.filter(ingredient => ingredient.type == "main"),
+           secondary: data.ingredients.filter(ingredient => ingredient.type == "secondary"),
+           prep: data.ingredients.filter(ingredient => ingredient.type == "prep"),
+           spice: data.ingredients.filter(ingredient => ingredient.type == "spice"),
+         },
+         step: 0,
+        },
+        methods: {
+          method() {
+            
+          }
+        },
+        mounted: function() {
+          
+          this.step = 1;
+        }
+      })
+    </script>
+    
   </body>
 </html>

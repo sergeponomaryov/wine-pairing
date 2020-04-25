@@ -1,10 +1,5 @@
 import data from '/data.js';
 
-// Ranking by score
-
-// let userIngredients = ["Red Meat", "Green Vegetables"];
-// let userPrep = "Sauteed / Fried";
-// let userSpice = "Black Pepper";
 let selections = ["pork", "potato", "grilled", "black_pepper"];
 let rankings = wineTypeRankings(selections);
 
@@ -42,10 +37,10 @@ function getTypeWeightByID(ingredients, id) {
   let obj = ingredients.find((o, i) => {
     if (o.id === id) {
       switch(o.type) {
-        case 'Main': typeWeight = 4; break;
-        case 'Secondary': typeWeight = 2; break;
-        case 'Prep': typeWeight = 1; break;
-        case 'Spice': typeWeight = 1; break;
+        case 'main': typeWeight = 4; break;
+        case 'secondary': typeWeight = 2; break;
+        case 'prep': typeWeight = 1; break;
+        case 'spice': typeWeight = 1; break;
       }
       return true;
     }

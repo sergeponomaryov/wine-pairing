@@ -1,11 +1,40 @@
-/* CSS files add styling rules to your content */
-
 body {
-  font-family: helvetica, arial, sans-serif;
-  margin: 2em;
+  font-family: helvetica;
 }
 
-h1 {
-  font-style: italic;
-  color: #373fff;
+.center {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.25s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transition: all .25s ease;
+}
+.slide-fade-leave-active {
+  transition: all .25s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+[v-cloak] {
+  display: none;
 }
