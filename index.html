@@ -13,32 +13,52 @@
     <!-- import the webpage's javascript file -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vuex"></script>
-    <script src="/script.js" type="module" defer></script>
+<!--     <script src="/script.js" type="module" defer></script> -->
   </head>  
   <body>
     <div class="center" id="vapp" v-cloak>
       <transition name="fade" mode="out-in" appear>
       <div v-if="step == 1" key="1">
         <h1>Hi! What are you eating? 😋</h1>
-        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.main" @click="step = 2;">{{ item.label }}</button>
+        <h3>We'll pick the right wine for you 🍷</h3>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.main" @click="selections.push(item.id); step++;">{{ item.label }}</button>
       </div>
       <div v-if="step == 2" key="2">
         <h1>What are you having it with? 🤔</h1>
-        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.secondary" @click="step = 3;">{{ item.label }}</button>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.secondary" @click="selections.push(item.id); step++;">{{ item.label }}</button>
       </div>
       <div v-if="step == 3" key="3">
         <h1>How is it prepared? 👨‍🍳</h1>
-        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.prep" @click="step = 4;">{{ item.label }}</button>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.prep" @click="selections.push(item.id); step++;">{{ item.label }}</button>
       </div>
       <div v-if="step == 4" key="4">
         <h1>Any spices? 🌶</h1>
-        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.spice" @click="step = 5;">{{ item.label }}</button>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.spice" @click="selections.push(item.id); step++;">{{ item.label }}</button>
+      </div>
+      <div v-if="step == 5" key="5">
+        <h1>Here are our top picks 🍷</h1>
+        <div :class="results[0].id">
+          <h1>1. {{ results[0].name }}</h1>
+          <h2>{{ results[0].match }}% Match</h2>
+          <h3>
+            {{ results[0].examples.join(', ') }}
+          </h3>
+        </div>
+        <div :class="results[1].id">
+          <h1>2. {{ results[1].name }}</h1>
+          <h2>{{ results[1].match }}% Match</h2>
+          <h3>
+            {{ results[1].examples.join(', ') }}
+          </h3>
+        </div>
+        <button type="button" class="btn btn-light btn-lg" @click="step = 1;">Start Over</button>
       </div>
       </transition>
     </div>
     
     <script type="module">
       import data from '/data.js';
+      import {rankWineTypes} from '/logic.js';
       const vueApp = new Vue({
         el: '#vapp',
         data: { 
@@ -48,16 +68,28 @@
            prep: data.ingredients.filter(ingredient => ingredient.type == "prep"),
            spice: data.ingredients.filter(ingredient => ingredient.type == "spice"),
          },
-         step: 0,
+         step: 1,
+         selections: [],
+         results: []
         },
         methods: {
           method() {
             
           }
         },
+        watch: {
+          selections: function() {
+            console.log(this.selections);
+          },
+          step: function() {
+            if(this.step == 5) {
+              this.results = rankWineTypes(this.selections);
+              console.log(this.results);
+            }
+          },
+        },
         mounted: function() {
-          
-          this.step = 1;
+          //console.log(rankWineTypes(["pork", "potato", "grilled", "black_pepper"]));
         }
       })
     </script>

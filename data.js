@@ -5,13 +5,14 @@ const ingredients = [
   {id: "cured_meat", "type": "main", "label": "🥓 Ham/Bacon"},
   {id: "fish", "type": "main", "label": "🐟 Fish"},
   {id: "lobster", "type": "main", "label": "🦐 Shellfish/Lobster"},
-  {id: "mollusks", "type": "main", "label": "🦪 Oysters/Mussels/Clams"},
+  {id: "mollusks", "type": "main", "label": "🐚 Oysters/Mussels/Clams"},
   {id: "soft_cheese", "type": "main", "label": "🥯 Soft Cheese"},
   {id: "pungent_cheese", "type": "main", "label": "😱 Smelly Cheese"},
   {id: "hard_cheese", "type": "main", "label": "🧀 Hard Cheese"},
-  {id: "fruits", "type": "main", "label": "🍎 Fruits/Berries"},
+  {id: "fruits", "type": "main", "label": "🍒 Fruits/Berries"},
   {id: "vanilla", "type": "main", "label": "🍮 Vanilla/Caramel"},
   {id: "chocolate", "type": "main", "label": "🍫 Chocolate/Coffee"},
+  {id: null, "type": "main", "label": "🤔 Something else"},
   
   {id: "white_starches", "type": "secondary", "label": "🍝 Pasta/Rice/Bread"},
   {id: "potato", "type": "secondary", "label": "🥔 Potatoes"},
@@ -24,19 +25,22 @@ const ingredients = [
   {id: "beans", "type": "secondary", "label": "🥫 Beans/Peas"},
   {id: "grains", "type": "secondary", "label": "🌾 Grains"},
   {id: "sweet_veg", "type": "secondary", "label": "🍠 Sweet Potato/Taro"},
+  {id: null, "type": "secondary", "label": "🙅‍♂️ None of the above"},
   
   {id: "grilled", "type": "prep", "label": "🔥 Grilled/BBQ'd"},
   {id: "fried", "type": "prep", "label": "🍳 Fried/Sauteed"},
   {id: "smoked", "type": "prep", "label": "🚬 Smoked"},
   {id: "roasted", "type": "prep", "label": "♨️ Baked/Roasted"},
   {id: "steamed", "type": "prep", "label": "😤 Steamed"},
+  {id: null, "type": "prep", "label": "🤷‍♂️ N/A"},
   
   {id: "black_pepper", "type": "spice", "label": "🖤 Black Pepper"},
   {id: "red_pepper", "type": "spice", "label": "❤️ Red Pepper"},
   {id: "herbs", "type": "spice", "label": "🌿 Herbs"},
-  {id: "baking_spices", "type": "spice", "label": "🍪 Cinammon/Clove/Mace"},
-  {id: "exotic_spices", "type": "spice", "label": "😎 Ginger/Saffron/Turmeric/Anice"},
-  {id: "spicy", "type": "spice", "label": "🤯 Very Hot"}
+  {id: "baking_spices", "type": "spice", "label": "🍁 Cinammon/Clove/Mace"},
+  {id: "exotic_spices", "type": "spice", "label": "🥘 Ginger/Saffron/Turmeric/Anice"},
+  {id: "spicy", "type": "spice", "label": "🤯 Very Hot"},
+  {id: null, "type": "spice", "label": "😶 None"}
 ];
 
 const wineTypes = [
@@ -56,7 +60,7 @@ const wineTypes = [
     {id: "red_pepper", "weight": 1},
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
-  ]},
+  ], examples: ["Malbec", "Syrah", "Mourvedre", "Pinotage", "Petite Sirah", "Touriga Nacional", "Cabernet Sauvignon", "Bordeaux Blend", "Meritage"], id: "bold_red"},
   {name: "Medium Red", pairing: [
     {id: "red_meat", "weight": 1},
     {id: "cured_meat", "weight": 1},
@@ -79,7 +83,7 @@ const wineTypes = [
     {id: "exotic_spices", "weight": 2},
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
-  ]},
+  ], examples: ["Merlot", "Sangiovese", "Zinfandel", "Primitivo", "Cabernet Franc", "Tempranillo", "Nebbiolo", "Barbera", "Cotes du Rhone Blend"], id: "medium_red"},
   {name: "Light Red", pairing: [
     {id: "cured_meat", "weight": 2},
     {id: "poultry", "weight": 2},
@@ -96,7 +100,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "grains", "weight": 1},
     {id: "potato", "weight": 1}
-  ]},
+  ], examples: ["Pinot Noir", "Grenache", "Gamay", "St. Laurent", "Carignan", "Counoise"], id: "light_red"},
   {name: "Rose", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
@@ -121,7 +125,7 @@ const wineTypes = [
     {id: "grains", "weight": 1},
     {id: "sweet_veg", "weight": 1},
     {id: "potato", "weight": 1}
-  ]},
+  ], examples: ["Provencal Rose", "White Zinfandel", "Loire Valley Rose", "Pinot Noir Rose", "Syrah Rose", "Garnacha Rosado", "Bandol Rose", "Tempranillo Rose", "Saignee Method Rose"], id: "rose"},
   {name: "Rich White", pairing: [
     {id: "poultry", "weight": 2},
     {id: "fish", "weight": 1},
@@ -138,7 +142,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "grains", "weight": 1},
     {id: "potato", "weight": 1}
-  ]},
+  ], examples: ["Chardonnay", "Semillon", "Viognier", "Marsanne", "Roussanne"], id: "rich_white"},
   {name: "Light White", pairing: [
     {id: "poultry", "weight": 1},
     {id: "mollusks", "weight": 1},
@@ -157,7 +161,7 @@ const wineTypes = [
     {id: "herbs", "weight": 2},
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
-  ]},
+  ], examples: ["Sauvignon Blanc", "Albarino", "Pinot Blanc", "Vermentino", "Melon de Bourgogne", "Gargenega", "Trebbiano", "Pinot Grigio"], id: "light_white"},
   {name: "Sparkling", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
@@ -181,7 +185,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1},
     {id: "fruits", "weight": 1}
-  ]},
+  ], examples: ["Champagne", "Prosecco", "Cremant", "Cava", "Metodo Classico", "Sparkling Wine", "Sparkling Rose"], id: "sparkling"},
   {name: "Sweet White", pairing: [
     {id: "cured_meat", "weight": 2},
     {id: "lobster", "weight": 1},
@@ -204,7 +208,7 @@ const wineTypes = [
     {id: "potato", "weight": 1},
     {id: "fruits", "weight": 2},
     {id: "vanilla", "weight": 1}
-  ]},
+  ], examples: ["Moscato", "Riesling", "Chenin Blanc", "Gewurtztraminer", "Alsacian Pinot Gris"], id: "sweet_white"},
   {name: "Dessert", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "smoked", "weight": 1},
@@ -215,7 +219,7 @@ const wineTypes = [
     {id: "fruits", "weight": 1},
     {id: "vanilla", "weight": 1},
     {id: "chocolate", "weight": 2}
-  ]},
+  ], examples: ["Port", "Sherry", "Madeira", "Vin Santo", "Muscat"], id: "dessert"},
 ];
 
 export default { ingredients, wineTypes };

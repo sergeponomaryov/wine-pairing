@@ -38,3 +38,31 @@ body {
 [v-cloak] {
   display: none;
 }
+
+.bold_red {
+  color: darkred;
+}
+
+.medium_red {
+  color: red;
+}
+
+.light_red {
+  color: crimson;
+}
+
+.rose {
+  color: lightpink;
+}
+
+.rich_white, .sparkling {
+  color: gold;
+}
+
+.light_white, .sweet_white {
+  color: gold;
+}
+
+.dessert {
+  color: chocolate;
+}

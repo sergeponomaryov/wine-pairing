@@ -1,25 +1,36 @@
 import data from '/data.js';
 
-let selections = ["pork", "potato", "grilled", "black_pepper"];
-let rankings = wineTypeRankings(selections);
+// let selections = ["pork", "potato", "grilled", "black_pepper"];
+// let rankings = wineTypeRankings(selections);
 
-console.log(rankings);
+// console.log(rankings);
 
-function wineTypeRankings(selections) {
-  let rankings = [];
+export function rankWineTypes(selections) {
+  let scores = [];
+  let matches = [];
   data.wineTypes.forEach(type => {
-    rankings.push({name: type.name, score: 0});
+    scores.push({name: type.name, score: 0, examples: type.examples, id: type.id});
     type.pairing.forEach(pairing => {
       selections.forEach(selection => {
         if(selection == pairing.id) {
           let typeWeight = getTypeWeightByID(data.ingredients, selection);
           let weight = pairing.weight * typeWeight;
-          rankings = increaseScoreByName(rankings, type.name, weight);
+          scores = increaseScoreByName(scores, type.name, weight);
         }
       });
     });
   });
-  return rankings;
+  let arr = scores.map(a => a.score);
+  //let maxScore = Math.max(...arr);
+  let maxScore = 16;
+  console.log(maxScore);
+  scores.forEach(scoreObj => {
+    let match = Math.round((scoreObj.score / maxScore) * 100);
+    matches.push({name: scoreObj.name, match: match, examples: scoreObj.examples, id: scoreObj.id});
+  });
+  matches.sort((a, b) => (a.match < b.match) ? 1 : -1);
+  matches = matches.slice(0, 2);
+  return matches;
 }
 
 function increaseScoreByName(rankings, name, score) {
