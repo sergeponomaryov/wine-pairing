@@ -5,35 +5,27 @@ import data from '/data.js';
 // let userIngredients = ["Red Meat", "Green Vegetables"];
 // let userPrep = "Sauteed / Fried";
 // let userSpice = "Black Pepper";
-let selections = ["Lobster & Shellfish", "Nuts & Seeds", "Poached / Steamed", "Herbs"];
-let wineRankings = [];
+let selections = ["pork", "potato", "grilled", "black_pepper"];
+let rankings = wineTypeRankings(selections);
 
-data.wineTypes.forEach(type => {
-  wineRankings.push({name: type.name, score: 0});
-  type.pairing.forEach(pairing => {
-    selections.forEach(selection => {
-      if(selection == pairing.name) {
-        // determine weight by type
-        let typeWeight = null;
-        let obj = data.ingredients.find((o, i) => {
-          if (o.name === selection) {
-            switch(o.type) {
-              case 'Main': typeWeight = 4; break;
-              case 'Secondary': typeWeight = 2; break;
-              case 'Prep': typeWeight = 1; break;
-              case 'Spice': typeWeight = 1; break;
-            }
-            return true;
-          }
-        });
-        let weight = pairing.weight * typeWeight;
-        wineRankings = increaseScoreByName(wineRankings, type.name, weight);
-      }
+console.log(rankings);
+
+function wineTypeRankings(selections) {
+  let rankings = [];
+  data.wineTypes.forEach(type => {
+    rankings.push({name: type.name, score: 0});
+    type.pairing.forEach(pairing => {
+      selections.forEach(selection => {
+        if(selection == pairing.id) {
+          let typeWeight = getTypeWeightByID(data.ingredients, selection);
+          let weight = pairing.weight * typeWeight;
+          rankings = increaseScoreByName(rankings, type.name, weight);
+        }
+      });
     });
   });
-});
-
-console.log(wineRankings);
+  return rankings;
+}
 
 function increaseScoreByName(rankings, name, score) {
   let obj = rankings.find((o, i) => {
@@ -43,6 +35,34 @@ function increaseScoreByName(rankings, name, score) {
     }
   });
   return rankings;
+}
+
+function getTypeWeightByID(ingredients, id) {
+  let typeWeight = null;
+  let obj = ingredients.find((o, i) => {
+    if (o.id === id) {
+      switch(o.type) {
+        case 'Main': typeWeight = 4; break;
+        case 'Secondary': typeWeight = 2; break;
+        case 'Prep': typeWeight = 1; break;
+        case 'Spice': typeWeight = 1; break;
+      }
+      return true;
+    }
+  });
+  return typeWeight;
+}
+
+function getIngredientLabelByID(ingredients, id, noEmoji=false) {
+  let label = null;
+  let obj = ingredients.find((o, i) => {
+    if (o.id === id) {
+      label = o.label;
+      return true;
+    }
+  });
+  if(!noEmoji) return label;
+  else return label.substring(3);
 }
 
 // Filtering by shared matches
@@ -62,3 +82,13 @@ function increaseScoreByName(rankings, name, score) {
     
 //   });
 // });
+
+// for another time... eg Sauteed Spicy Shrimps with Pasta, problem is we can't know if it's pasta or rice unless we split it up
+// better just show their full selection with emojis in multiple rows
+// function getDishName(selections) {
+//   let labels = [];
+//   selections.forEach(selection => {
+//     labels.push(getIngredientLabelByID(data.ingredients, selection, true));
+//   });
+//   console.log(labels);
+// }
