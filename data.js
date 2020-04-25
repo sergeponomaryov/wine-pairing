@@ -12,7 +12,7 @@ const ingredients = [
   {id: "fruits", "type": "main", "label": "🍒 Fruits/Berries"},
   {id: "vanilla", "type": "main", "label": "🍮 Vanilla/Caramel"},
   {id: "chocolate", "type": "main", "label": "🍫 Chocolate/Coffee"},
-  {id: null, "type": "main", "label": "🤔 Something else"},
+  {id: null, "type": "main", "label": "🤔 None of the above"},
   
   {id: "white_starches", "type": "secondary", "label": "🍝 Pasta/Rice/Bread"},
   {id: "potato", "type": "secondary", "label": "🥔 Potatoes"},
@@ -21,7 +21,7 @@ const ingredients = [
   {id: "nightshades", "type": "secondary", "label": "🍅 Tomato/Bell Pepper/Eggplant"},
   {id: "mushrooms", "type": "secondary", "label": "🍄 Mushrooms"},
   {id: "alliums", "type": "secondary", "label": "🧅 Onions"},
-  {id: "nuts", "type": "secondary", "label": "🌰 Nuts/Seeds"},
+  {id: "nuts", "type": "secondary", "label": "🥜 Nuts/Seeds"},
   {id: "beans", "type": "secondary", "label": "🥫 Beans/Peas"},
   {id: "grains", "type": "secondary", "label": "🌾 Grains"},
   {id: "sweet_veg", "type": "secondary", "label": "🍠 Sweet Potato/Taro"},
@@ -44,7 +44,7 @@ const ingredients = [
 ];
 
 const wineTypes = [
-  {name: "Bold Red", pairing: [
+  {name: "Bold Reds", pairing: [
     {id: "red_meat", "weight": 2},
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
@@ -61,7 +61,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
   ], examples: ["Malbec", "Syrah", "Mourvedre", "Pinotage", "Petite Sirah", "Touriga Nacional", "Cabernet Sauvignon", "Bordeaux Blend", "Meritage"], id: "bold_red"},
-  {name: "Medium Red", pairing: [
+  {name: "Medium Reds", pairing: [
     {id: "red_meat", "weight": 1},
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 2},
@@ -84,7 +84,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
   ], examples: ["Merlot", "Sangiovese", "Zinfandel", "Primitivo", "Cabernet Franc", "Tempranillo", "Nebbiolo", "Barbera", "Cotes du Rhone Blend"], id: "medium_red"},
-  {name: "Light Red", pairing: [
+  {name: "Light Reds", pairing: [
     {id: "cured_meat", "weight": 2},
     {id: "poultry", "weight": 2},
     {id: "grilled", "weight": 1},
@@ -101,7 +101,7 @@ const wineTypes = [
     {id: "grains", "weight": 1},
     {id: "potato", "weight": 1}
   ], examples: ["Pinot Noir", "Grenache", "Gamay", "St. Laurent", "Carignan", "Counoise"], id: "light_red"},
-  {name: "Rose", pairing: [
+  {name: "Rose Wines", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
     {id: "poultry", "weight": 1},
@@ -126,7 +126,7 @@ const wineTypes = [
     {id: "sweet_veg", "weight": 1},
     {id: "potato", "weight": 1}
   ], examples: ["Provencal Rose", "White Zinfandel", "Loire Valley Rose", "Pinot Noir Rose", "Syrah Rose", "Garnacha Rosado", "Bandol Rose", "Tempranillo Rose", "Saignee Method Rose"], id: "rose"},
-  {name: "Rich White", pairing: [
+  {name: "Rich Whites", pairing: [
     {id: "poultry", "weight": 2},
     {id: "fish", "weight": 1},
     {id: "lobster", "weight": 2},
@@ -143,7 +143,7 @@ const wineTypes = [
     {id: "grains", "weight": 1},
     {id: "potato", "weight": 1}
   ], examples: ["Chardonnay", "Semillon", "Viognier", "Marsanne", "Roussanne"], id: "rich_white"},
-  {name: "Light White", pairing: [
+  {name: "Light Whites", pairing: [
     {id: "poultry", "weight": 1},
     {id: "mollusks", "weight": 1},
     {id: "fish", "weight": 2},
@@ -162,7 +162,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
   ], examples: ["Sauvignon Blanc", "Albarino", "Pinot Blanc", "Vermentino", "Melon de Bourgogne", "Gargenega", "Trebbiano", "Pinot Grigio"], id: "light_white"},
-  {name: "Sparkling", pairing: [
+  {name: "Sparkling Wines", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
     {id: "poultry", "weight": 1},
@@ -186,7 +186,7 @@ const wineTypes = [
     {id: "potato", "weight": 1},
     {id: "fruits", "weight": 1}
   ], examples: ["Champagne", "Prosecco", "Cremant", "Cava", "Metodo Classico", "Sparkling Wine", "Sparkling Rose"], id: "sparkling"},
-  {name: "Sweet White", pairing: [
+  {name: "Sweet Whites", pairing: [
     {id: "cured_meat", "weight": 2},
     {id: "lobster", "weight": 1},
     {id: "grilled", "weight": 1},
@@ -209,7 +209,7 @@ const wineTypes = [
     {id: "fruits", "weight": 2},
     {id: "vanilla", "weight": 1}
   ], examples: ["Moscato", "Riesling", "Chenin Blanc", "Gewurtztraminer", "Alsacian Pinot Gris"], id: "sweet_white"},
-  {name: "Dessert", pairing: [
+  {name: "Dessert Wines", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "smoked", "weight": 1},
     {id: "soft_cheese", "weight": 1},

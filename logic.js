@@ -20,9 +20,13 @@ export function rankWineTypes(selections) {
       });
     });
   });
-  let arr = scores.map(a => a.score);
-  //let maxScore = Math.max(...arr);
-  let maxScore = 16;
+  let maxScore = 0;
+  selections.forEach(selection => {
+    if(selection != null) {
+      let typeWeight = getTypeWeightByID(data.ingredients, selection);
+      maxScore += typeWeight * 2;
+    }
+  });
   console.log(maxScore);
   scores.forEach(scoreObj => {
     let match = Math.round((scoreObj.score / maxScore) * 100);

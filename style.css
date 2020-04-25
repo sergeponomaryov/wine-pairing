@@ -44,23 +44,23 @@ body {
 }
 
 .medium_red {
-  color: red;
-}
-
-.light_red {
   color: crimson;
 }
 
+.light_red {
+  color: indianred;
+}
+
 .rose {
-  color: lightpink;
+  color: salmon;
 }
 
 .rich_white, .sparkling {
-  color: gold;
+  color: goldenrod;
 }
 
 .light_white, .sweet_white {
-  color: gold;
+  color: goldenrod;
 }
 
 .dessert {
