@@ -22,12 +22,10 @@ export function rankWineTypes(selections) {
   });
   let maxScore = 0;
   selections.forEach(selection => {
-    if(selection != null) {
-      let typeWeight = getTypeWeightByID(data.ingredients, selection);
-      maxScore += typeWeight * 2;
-    }
+    let typeWeight = getTypeWeightByID(data.ingredients, selection);
+    maxScore += typeWeight * 2;
   });
-  console.log(maxScore);
+  //console.log(maxScore);
   scores.forEach(scoreObj => {
     let match = Math.round((scoreObj.score / maxScore) * 100);
     matches.push({name: scoreObj.name, match: match, examples: scoreObj.examples, id: scoreObj.id});

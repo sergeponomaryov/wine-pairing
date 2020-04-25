@@ -9,6 +9,7 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍷</text></svg>">
     
     <!-- import the webpage's javascript file -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -16,7 +17,8 @@
 <!--     <script src="/script.js" type="module" defer></script> -->
   </head>  
   <body>
-    <div class="center" id="vapp" v-cloak>
+    <div class="container min-vh-100 d-flex">
+    <div class="row align-self-center text-center" id="vapp" v-cloak>
       <transition name="fade" mode="out-in" appear>
       <div v-if="step == 1" key="1">
         <h1>Hi! What are you eating? 😋</h1>
@@ -65,6 +67,13 @@
       </div>
       </transition>
     </div>
+    </div>
+    
+<!--     <footer class="footer">
+      <div class="container text-center">
+        <span class="text-muted">made by Serge Ponomarov</span>
+      </div>
+    </footer> -->
     
     <script type="module">
       import data from '/data.js';
@@ -98,6 +107,7 @@
           },
           step: function() {
             if(this.step == 5) {
+              this.selections = this.selections.filter(x => x); // remove null values
               this.results = rankWineTypes(this.selections);
               //console.log(this.results);
             }
