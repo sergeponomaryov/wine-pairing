@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Wine/Food Pairing</title>
+    <title>Wine/Food Pairing App</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Easily pair the best wine with your food">
+    <meta name="description" content="A fun app to easily pair the best wine with your food">
     <meta name="keywords" content="wine food pairing">
     
     <!-- import the webpage's stylesheet -->
@@ -27,7 +27,7 @@
     </script>
   </head>  
   <body>
-    <div class="container min-vh-100 d-flex">
+    <div class="container min-vh-100 d-flex justify-content-center">
     <div class="row align-self-center text-center" id="vapp" v-cloak>
       <transition name="fade" mode="out-in" appear>
       <div v-if="step == 1" key="1">
@@ -78,12 +78,6 @@
       </transition>
     </div>
     </div>
-    
-<!--     <footer class="footer">
-      <div class="container text-center">
-        <span class="text-muted">made by Serge Ponomarov</span>
-      </div>
-    </footer> -->
     
     <script type="module">
       import data from '/data.js';
