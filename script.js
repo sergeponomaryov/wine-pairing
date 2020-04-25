@@ -1,224 +1,64 @@
-const ingredients = [
-  {name: "Red Meat"},
-  {name: "Cured Meat"},
-  {name: "Pork"},
-  {name: "Poultry"},
-  {name: "Mollusks"},
-  {name: "Fish"},
-  {name: "Lobster & Shellfish"},
-  {name: "Soft Cheese & Cream"},
-  {name: "Pungent Cheese"},
-  {name: "Hard Cheese"},
-  {name: "Alliums"},
-  {name: "Green Vegetables"},
-  {name: "Root Vegetables & Squash"},
-  {name: "Nightshades"},
-  {name: "Mushrooms"},
-  {name: "Nuts & Seeds"},
-  {name: "Beans & Peas"},
-  {name: "White Starches"},
-  {name: "Whole Wheat Grains"},
-  {name: "Sweet Starchy Vegetables"},
-  {name: "Potato"},
-  {name: "Fruit & Berries"},
-  {name: "Vanilla & Caramel"},
-  {name: "Chocolate & Coffee"},
-];
+import data from '/data.js';
 
-const preparations = [
-  {name: "Grilled / BBQ"},
-  {name: "Sauteed / Fried"},
-  {name: "Smoked"},
-  {name: "Roasted"},
-  {name: "Poached / Steamed"},
-];
+// Ranking by score
 
-const spices = [
-  {name: "Black Pepper"},
-  {name: "Red Pepper"},
-  {name: "Hot & Spicy"},
-  {name: "Herbs"},
-  {name: "Baking Spices"},
-  {name: "Exotic & Aromatic Spices"},
-];
+// let userIngredients = ["Red Meat", "Green Vegetables"];
+// let userPrep = "Sauteed / Fried";
+// let userSpice = "Black Pepper";
+let selections = ["Lobster & Shellfish", "Nuts & Seeds", "Poached / Steamed", "Herbs"];
+let wineRankings = [];
 
-const wineTypes = [
-  {name: "Bold Red", pairing: [
-    {"name": "Red Meat", "weight": 2},
-    {"name": "Cured Meat", "weight": 1},
-    {"name": "Pork", "weight": 1},
-    {"name": "Grilled / BBQ", "weight": 2},
-    {"name": "Smoked", "weight": 1},
-    {"name": "Roasted", "weight": 2},
-    {"name": "Pungent Cheese", "weight": 1},
-    {"name": "Hard Cheese", "weight": 2},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Nightshades", "weight": 1},
-    {"name": "Mushrooms", "weight": 1},
-    {"name": "Black Pepper", "weight": 2},
-    {"name": "Red Pepper", "weight": 1},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Potato", "weight": 1}
-  ]},
-  {name: "Medium Red", pairing: [
-    {"name": "Red Meat", "weight": 1},
-    {"name": "Cured Meat", "weight": 1},
-    {"name": "Pork", "weight": 2},
-    {"name": "Poultry", "weight": 1},
-    {"name": "Grilled / BBQ", "weight": 1},
-    {"name": "Smoked", "weight": 2},
-    {"name": "Roasted", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 1},
-    {"name": "Pungent Cheese", "weight": 2},
-    {"name": "Hard Cheese", "weight": 1},
-    {"name": "Alliums", "weight": 2},
-    {"name": "Nightshades", "weight": 2},
-    {"name": "Mushrooms", "weight": 2},
-    {"name": "Beans & Peas", "weight": 1},
-    {"name": "Black Pepper", "weight": 1},
-    {"name": "Red Pepper", "weight": 2},
-    {"name": "Herbs", "weight": 1},
-    {"name": "Baking Spices", "weight": 1},
-    {"name": "Exotic & Aromatic Spices", "weight": 2},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Potato", "weight": 1}
-  ]},
-  {name: "Light Red", pairing: [
-    {"name": "Cured Meat", "weight": 2},
-    {"name": "Poultry", "weight": 2},
-    {"name": "Grilled / BBQ", "weight": 1},
-    {"name": "Sauteed / Fried", "weight": 2},
-    {"name": "Smoked", "weight": 1},
-    {"name": "Roasted", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 2},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Mushrooms", "weight": 2},
-    {"name": "Nuts & Seeds", "weight": 1},
-    {"name": "Herbs", "weight": 1},
-    {"name": "Exotic & Aromatic Spices", "weight": 1},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Whole Wheat Grains", "weight": 1},
-    {"name": "Potato", "weight": 1}
-  ]},
-  {name: "Rose", pairing: [
-    {"name": "Cured Meat", "weight": 1},
-    {"name": "Pork", "weight": 1},
-    {"name": "Poultry", "weight": 1},
-    {"name": "Lobster & Shellfish", "weight": 1},
-    {"name": "Sauteed / Fried", "weight": 1},
-    {"name": "Smoked", "weight": 1},
-    {"name": "Roasted", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 1},
-    {"name": "Pungent Cheese", "weight": 1},
-    {"name": "Hard Cheese", "weight": 1},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Root Vegetables & Squash", "weight": 2},
-    {"name": "Nightshades", "weight": 1},
-    {"name": "Nuts & Seeds", "weight": 1},
-    {"name": "Beans & Peas", "weight": 1},
-    {"name": "Red Pepper", "weight": 1},
-    {"name": "Herbs", "weight": 1},
-    {"name": "Baking Spices", "weight": 1},
-    {"name": "Exotic & Aromatic Spices", "weight": 1},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Whole Wheat Grains", "weight": 1},
-    {"name": "Sweet Starchy Vegetables", "weight": 1},
-    {"name": "Potato", "weight": 1}
-  ]},
-  {name: "Rich White", pairing: [
-    {"name": "Poultry", "weight": 2},
-    {"name": "Fish", "weight": 1},
-    {"name": "Lobster & Shellfish", "weight": 2},
-    {"name": "Sauteed / Fried", "weight": 1},
-    {"name": "Poached / Steamed", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 2},
-    {"name": "Hard Cheese", "weight": 1},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Root Vegetables & Squash", "weight": 1},
-    {"name": "Mushrooms", "weight": 2},
-    {"name": "Nuts & Seeds", "weight": 1},
-    {"name": "Herbs", "weight": 1},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Whole Wheat Grains", "weight": 1},
-    {"name": "Potato", "weight": 1}
-  ]},
-  {name: "Light White", pairing: [
-    {"name": "Poultry", "weight": 1},
-    {"name": "Mollusks", "weight": 1},
-    {"name": "Fish", "weight": 2},
-    {"name": "Lobster & Shellfish", "weight": 1},
-    {"name": "Sauteed / Fried", "weight": 1},
-    {"name": "Poached / Steamed", "weight": 2},
-    {"name": "Soft Cheese & Cream", "weight": 1},
-    {"name": "Pungent Cheese", "weight": 1},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Green Vegetables", "weight": 2},
-    {"name": "Nuts & Seeds", "weight": 1},
-    {"name": "Beans & Peas", "weight": 2},
-    {"name": "Red Pepper", "weight": 1},
-    {"name": "Hot & Spicy", "weight": 1},
-    {"name": "Herbs", "weight": 2},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Potato", "weight": 1}
-  ]},
-  {name: "Sparkling", pairing: [
-    {"name": "Cured Meat", "weight": 1},
-    {"name": "Pork", "weight": 1},
-    {"name": "Poultry", "weight": 1},
-    {"name": "Mollusks", "weight": 2},
-    {"name": "Fish", "weight": 1},
-    {"name": "Grilled / BBQ", "weight": 1},
-    {"name": "Sauteed / Fried", "weight": 1},
-    {"name": "Smoked", "weight": 1},
-    {"name": "Poached / Steamed", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 1},
-    {"name": "Pungent Cheese", "weight": 1},
-    {"name": "Hard Cheese", "weight": 1},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Green Vegetables", "weight": 1},
-    {"name": "Nuts & Seeds", "weight": 1},
-    {"name": "Beans & Peas", "weight": 1},
-    {"name": "Red Pepper", "weight": 1},
-    {"name": "Hot & Spicy", "weight": 1},
-    {"name": "Exotic & Aromatic Spices", "weight": 1},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Potato", "weight": 1},
-    {"name": "Fruit & Berries", "weight": 1}
-  ]},
-  {name: "Sweet White", pairing: [
-    {"name": "Cured Meat", "weight": 2},
-    {"name": "Lobster & Shellfish", "weight": 1},
-    {"name": "Grilled / BBQ", "weight": 1},
-    {"name": "Roasted", "weight": 1},
-    {"name": "Poached / Steamed", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 1},
-    {"name": "Pungent Cheese", "weight": 1},
-    {"name": "Alliums", "weight": 1},
-    {"name": "Root Vegetables & Squash", "weight": 1},
-    {"name": "Nightshades", "weight": 1},
-    {"name": "Nuts & Seeds", "weight": 2},
-    {"name": "Red Pepper", "weight": 1},
-    {"name": "Hot & Spicy", "weight": 2},
-    {"name": "Baking Spices", "weight": 1},
-    {"name": "Exotic & Aromatic Spices", "weight": 2},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Whole Wheat Grains", "weight": 2},
-    {"name": "Sweet Starchy Vegetables", "weight": 2},
-    {"name": "Potato", "weight": 1},
-    {"name": "Fruit & Berries", "weight": 2},
-    {"name": "Vanilla & Caramel", "weight": 1}
-  ]},
-  {name: "Dessert", pairing: [
-    {"name": "Cured Meat", "weight": 1},
-    {"name": "Smoked", "weight": 1},
-    {"name": "Soft Cheese & Cream", "weight": 1},
-    {"name": "Pungent Cheese", "weight": 2},
-    {"name": "Baking Spices", "weight": 2},
-    {"name": "White Starches", "weight": 1},
-    {"name": "Fruit & Berries", "weight": 1},
-    {"name": "Vanilla & Caramel", "weight": 1},
-    {"name": "Chocolate & Coffee", "weight": 2}
-  ]},
-];
+data.wineTypes.forEach(type => {
+  wineRankings.push({name: type.name, score: 0});
+  type.pairing.forEach(pairing => {
+    selections.forEach(selection => {
+      if(selection == pairing.name) {
+        // determine weight by type
+        let typeWeight = null;
+        let obj = data.ingredients.find((o, i) => {
+          if (o.name === selection) {
+            switch(o.type) {
+              case 'Main': typeWeight = 4; break;
+              case 'Secondary': typeWeight = 2; break;
+              case 'Prep': typeWeight = 1; break;
+              case 'Spice': typeWeight = 1; break;
+            }
+            return true;
+          }
+        });
+        let weight = pairing.weight * typeWeight;
+        wineRankings = increaseScoreByName(wineRankings, type.name, weight);
+      }
+    });
+  });
+});
 
-console.log("hi");
+console.log(wineRankings);
+
+function increaseScoreByName(rankings, name, score) {
+  let obj = rankings.find((o, i) => {
+    if (o.name === name) {
+        rankings[i]['score'] += score;
+        return true;
+    }
+  });
+  return rankings;
+}
+
+// Filtering by shared matches
+// let selections = ["Red Meat", "Green Vegetables", "Sauteed / Fried", "Black Pepper"];
+
+// let matches = [];
+// data.wineTypes.forEach(type => {
+//   //matches.push(type.name);
+//   selections.forEach(selection => {
+//     let obj = type.pairing.find((o, i) => {
+//       if (o.name === name) {
+//           rankings[i]['score'] += score;
+//           return true; // stop searching
+//       }
+//     });
+//     matches.push(type.name);
+    
+//   });
+// });
