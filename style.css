@@ -25,11 +25,12 @@ html,body {
 .slide-fade-enter-active {
   transition: all .25s ease;
 }
+
 .slide-fade-leave-active {
   transition: all .25s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
+
+.slide-fade-enter, .slide-fade-leave-to {
   transform: translateX(10px);
   opacity: 0;
 }
@@ -38,40 +39,76 @@ html,body {
   display: none;
 }
 
-.bold_red {
-  color: darkred;
+.progress-bold-red .progress-bar {
+  background-color: #830026;
 }
 
-.medium_red {
-  color: crimson;
+.progress-bold-red {
+  background-color: #F3E6EA;
 }
 
-.light_red {
-  color: indianred;
+.progress-medium-red .progress-bar {
+  background-color: #C20038;
 }
 
-.rose {
-  color: salmon;
+.progress-medium-red {
+  background-color: #F9E6EC;
 }
 
-.rich_white, .sparkling {
-  color: goldenrod;
+.progress-light-red .progress-bar {
+  background-color: #fa0048;
 }
 
-.light_white, .sweet_white {
-  color: goldenrod;
+.progress-light-red {
+  background-color: #ffe6ed;
 }
 
-.dessert {
-  color: chocolate;
+.progress-rose .progress-bar {
+  background-color: #ff747c;
 }
 
-.progress-red .progress-bar {
-  background-color: #de6b6d;
+.progress-rose {
+  background-color: #fff2f2;
 }
 
-.progress-red {
-  background-color: #fcf1f1;
+.progress-light-white .progress-bar {
+  background-color: #ffcd1d;
+}
+
+.progress-light-white {
+  background-color: #fffae9;
+}
+
+.progress-rich-white .progress-bar {
+  background-color: #fe8311;
+}
+
+.progress-rich-white {
+  background-color: #fff3e8;
+}
+
+.progress-sweet-white .progress-bar {
+  background-color: #ffa800;
+}
+
+.progress-sweet-white {
+  background-color: #fffae9;
+}
+
+.progress-sparkling .progress-bar {
+  background-color: #ffe91f;
+}
+
+.progress-sparkling {
+  background-color: #fffde9;
+}
+
+.progress-dessert .progress-bar {
+  background-color: #bc4400;
+}
+
+.progress-dessert {
+  background-color: #fffde9;
 }
 
 .progress-bar, .progress {
@@ -93,4 +130,8 @@ html,body {
 
 .results-wine-type {
   min-width: 50vw;
+}
+
+#vapp {
+  padding-bottom: 2.5rem;
 }

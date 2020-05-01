@@ -27,7 +27,7 @@
     </script>
   </head>  
   <body>
-    <div class="container min-vh-100 d-flex justify-content-center">
+    <div class="container min-vh-100 d-flex justify-content-center" style="min-height: calc(100vh - 70px);">
     <div class="row align-self-center text-center" id="vapp" v-cloak>
       <transition name="fade" mode="out-in" appear>
       <div v-if="step == 1" key="1">
@@ -61,7 +61,7 @@
               <span class="ml-1">like {{ result.examples.join(', ') }}</span>
             </div>
             <div class="progress-wrapper d-flex mt-2">
-              <div class="progress progress-red align-self-center">
+              <div :class="`progress progress-${result.id} align-self-center`">
                 <div class="progress-bar" role="progressbar" :style="'width: ' + result.match + '%'" :aria-valuenow="result.match" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
               <div class="progress-percentage align-top ml-2">
@@ -70,7 +70,6 @@
             </div>
             <div class="mt-2 font-weight-light" v-if="result.perfectMatches.length">
               Perfect with {{ result.perfectMatches.join(' and ') }}
-              <!-- , Match with: {{ result.matches.join(', ') }} -->
             </div>
           </div>
           
@@ -99,10 +98,6 @@
          step: 1,
          selections: [],
          results: []
-         // for testing:
-         // step: 5,
-         // selections: ["pork", "potato", "grilled", "black_pepper"],
-         // results: rankWineTypes(["pork", "potato", "grilled", "black_pepper"])
         },
         methods: {
           select(itemId) {
@@ -121,11 +116,9 @@
         },
         watch: {
           step: function() {
-            //console.log(this.selections);
             if(this.step == 5) {
               this.selections = this.selections.filter(x => x); // remove null values
               this.results = rankWineTypes(this.selections);
-              //console.log(this.results);
             } else {
               // clear the selection on this step in case user went back
               this.selections[this.step-1] = null;
