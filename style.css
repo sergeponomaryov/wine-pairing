@@ -77,3 +77,15 @@ html,body {
 .progress-bar, .progress {
   border-radius: 0.5rem;
 }
+
+.progress-wrapper {
+  display: flex;
+}
+
+.progress-wrapper .progress {
+  width: 100%;
+}
+
+.progress-percentage {
+  flex: 1;
+}
