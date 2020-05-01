@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Wine/Food Pairing App</title>
+    <title>Wine & Food Pairing Assistant</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,11 +32,11 @@
       <transition name="fade" mode="out-in" appear>
       <div v-if="step == 1" key="1">
         <h1>Hi! What are you eating? 😋</h1>
-        <h3>I will pick the right wine for you 🍷</h3>
+        <h3>I will find the right food and wine pairing for you 🍷</h3>
         <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.main" @click="select(item.id)">{{ item.label }}</button>
       </div>
       <div v-if="step == 2" key="2">
-        <h1 v-if="selections.length">What are you having it with? 🤔</h1>
+        <h1 v-if="selections[0] != null">What are you having it with? 🤔</h1>
         <h1 v-else>What then? 🤔</h1>
         <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.secondary" @click="select(item.id)">{{ item.label }}</button>
         <button type="button" class="btn btn-light btn-lg" @click="back()">← Go back</button>
@@ -53,22 +53,35 @@
       </div>
       <div v-if="step == 5" key="5">
         <div v-if="selections.length">
-          <h1 v-if="results[1].match != 0">Here are our top picks 🍷</h1>
-          <h1 v-else>Here is our top pick 🍷</h1>
-          <div :class="results[0].id">
-            <h1><span v-if="results[1].match != 0">1. </span>{{ results[0].name }}</h1>
+          <h1 v-if="results[1].match != 0">Here are my top picks 🍷</h1>
+          <h1 v-else>Here is my top pick 🍷</h1>
+          <div>
+            <div>
+              <span class="h3">{{ results[0].name }}</span>
+              <span>{{ results[0].examples.join(', ') }}</span>
+            </div>
+            <div class="row">
+            <div class="col-11">
+              <div class="progress progress-red">
+                <div class="progress-bar" role="progressbar" :style="'width: ' + results[0].match + '%'" :aria-valuenow="results[0].match" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="col-1">
+              {{ results[0].match }}%
+            </div>
+              
+            </div>
             <h2>{{ results[0].match }}% Match</h2>
             <h3>
-              {{ results[0].examples.join(', ') }}
             </h3>
           </div>
-          <div :class="results[1].id" v-if="results[1].match != 0">
+          <!--<div :class="results[1].id" v-if="results[1].match != 0">
             <h1>2. {{ results[1].name }}</h1>
             <h2>{{ results[1].match }}% Match</h2>
             <h3>
               {{ results[1].examples.join(', ') }}
             </h3>
-          </div>
+          </div>-->
         </div>
         <div v-else>
           <h1>So you're not eating anything... 🤦‍♂️</h1>
@@ -91,34 +104,45 @@
            prep: data.ingredients.filter(ingredient => ingredient.type == "prep"),
            spice: data.ingredients.filter(ingredient => ingredient.type == "spice"),
          },
-         step: 1,
-         selections: [],
-         results: []
+         step: 5,
+         // testing, set these to empty arrays! step = 1
+         selections: ["pork", "potato", "grilled", "black_pepper"],
+         results: rankWineTypes(["pork", "potato", "grilled", "black_pepper"])
         },
         methods: {
           select(itemId) {
-            this.selections.push(itemId);
+            this.selections[this.step-1] = itemId;
             this.step++;
           },
           back() {
-            this.selections.pop();
-            this.step--;
+            //this.step--;
+            window.history.back();
+          },
+          setStepByHash() {
+            let step = location.hash.substr(1);
+            if(!step) step = 1;
+            if(step >= 1 && step <= 5) this.step = step;
           }
         },
         watch: {
           selections: function() {
-            //console.log(this.selections);
+            console.log(this.selections);
           },
           step: function() {
             if(this.step == 5) {
               this.selections = this.selections.filter(x => x); // remove null values
               this.results = rankWineTypes(this.selections);
-              //console.log(this.results);
+            } else {
+              // clear the selection on this step in case user went back
+              this.selections[this.step-1] = null;
             }
-          },
+            location.hash = "#"+this.step;
+          }
         },
-        mounted: function() {
-          //console.log(rankWineTypes(["pork", "potato", "grilled", "black_pepper"]));
+        mounted () {
+          window.addEventListener("hashchange", this.setStepByHash, false);
+          // reset any step in hash upon load
+          location.hash = "";
         }
       })
     </script>
