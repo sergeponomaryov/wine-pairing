@@ -1,44 +1,56 @@
 import data from '/data.js';
 
-// let selections = ["pork", "potato", "grilled", "black_pepper"];
-// let rankings = wineTypeRankings(selections);
-
-// console.log(rankings);
-
 export function rankWineTypes(selections) {
   let scores = [];
   let matches = [];
+  
+  // calculate scores (weighted number of matches)
   data.wineTypes.forEach(type => {
-    scores.push({name: type.name, score: 0, examples: type.examples, id: type.id});
+    scores.push({name: type.name, score: 0, examples: type.examples, id: type.id, matches: [], perfectMatches: []});
     type.pairing.forEach(pairing => {
       selections.forEach(selection => {
         if(selection == pairing.id) {
           let typeWeight = getTypeWeightByID(data.ingredients, selection);
           let weight = pairing.weight * typeWeight;
-          scores = increaseScoreByName(scores, type.name, weight);
+          let isPerfectMatch = (pairing.weight == 2) ? true : false;
+          scores = increaseScoreByName(scores, type.name, weight, selection, isPerfectMatch);
         }
       });
     });
   });
+  
+  // convert it to % match out of max possible score for these foods
   let maxScore = 0;
   selections.forEach(selection => {
     let typeWeight = getTypeWeightByID(data.ingredients, selection);
     maxScore += typeWeight * 2;
   });
-  //console.log(maxScore);
   scores.forEach(scoreObj => {
-    let match = Math.round((scoreObj.score / maxScore) * 100);
-    matches.push({name: scoreObj.name, match: match, examples: scoreObj.examples, id: scoreObj.id});
+    let match = (scoreObj.score / maxScore) * 100;
+    match = Math.round(50 + (match / 2)); // min score 50, so that it looks better lol
+    matches.push({name: scoreObj.name, match: match, examples: scoreObj.examples, id: scoreObj.id, matches: scoreObj.matches, perfectMatches: scoreObj.perfectMatches});
   });
+  
+  // sort them
   matches.sort((a, b) => (a.match < b.match) ? 1 : -1);
-  matches = matches.slice(0, 2);
+  
+  // by default show 2 results, but if second is 50 or less or if third is 100, show 1 or 3
+  let size = 2;
+  if(matches[1].match <= 50) size = 1;
+  else if(matches[2].match == 100) size = 3;
+  matches = matches.slice(0, size);
+  
   return matches;
 }
 
-function increaseScoreByName(rankings, name, score) {
+function increaseScoreByName(rankings, name, score, ingredient, isPerfectMatch) {
   let obj = rankings.find((o, i) => {
     if (o.name === name) {
         rankings[i]['score'] += score;
+        // record matches/perfect matches with selection to wine group
+        let label = getIngredientLabelByID(data.ingredients, ingredient);
+        if(isPerfectMatch) rankings[i]['perfectMatches'].push(label);
+        else rankings[i]['matches'].push(label);
         return true;
     }
   });
@@ -72,31 +84,3 @@ function getIngredientLabelByID(ingredients, id, noEmoji=false) {
   if(!noEmoji) return label;
   else return label.substring(3);
 }
-
-// Filtering by shared matches
-// let selections = ["Red Meat", "Green Vegetables", "Sauteed / Fried", "Black Pepper"];
-
-// let matches = [];
-// data.wineTypes.forEach(type => {
-//   //matches.push(type.name);
-//   selections.forEach(selection => {
-//     let obj = type.pairing.find((o, i) => {
-//       if (o.name === name) {
-//           rankings[i]['score'] += score;
-//           return true; // stop searching
-//       }
-//     });
-//     matches.push(type.name);
-    
-//   });
-// });
-
-// for another time... eg Sauteed Spicy Shrimps with Pasta, problem is we can't know if it's pasta or rice unless we split it up
-// better just show their full selection with emojis in multiple rows
-// function getDishName(selections) {
-//   let labels = [];
-//   selections.forEach(selection => {
-//     labels.push(getIngredientLabelByID(data.ingredients, selection, true));
-//   });
-//   console.log(labels);
-// }

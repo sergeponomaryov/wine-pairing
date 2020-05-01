@@ -88,4 +88,9 @@ html,body {
 
 .progress-percentage {
   flex: 1;
+  font-size: 1.25rem;
+}
+
+.results-wine-type {
+  min-width: 50vw;
 }

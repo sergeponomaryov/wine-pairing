@@ -60,7 +60,7 @@ const wineTypes = [
     {id: "red_pepper", "weight": 1},
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
-  ], examples: ["Malbec", "Syrah", "Mourvedre", "Pinotage", "Petite Sirah", "Touriga Nacional", "Cabernet Sauvignon", "Bordeaux Blend", "Meritage"], id: "bold_red"},
+  ], examples: ["Malbec", "Syrah", "Cabernet Sauvignon", "Bordeaux"], id: "bold_red"},
   {name: "Medium Reds", pairing: [
     {id: "red_meat", "weight": 1},
     {id: "cured_meat", "weight": 1},
@@ -83,7 +83,7 @@ const wineTypes = [
     {id: "exotic_spices", "weight": 2},
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
-  ], examples: ["Merlot", "Sangiovese", "Zinfandel", "Primitivo", "Cabernet Franc", "Tempranillo", "Nebbiolo", "Barbera", "Cotes du Rhone Blend"], id: "medium_red"},
+  ], examples: ["Merlot", "Sangiovese", "Zinfandel", "Cabernet Franc", "Tempranillo"], id: "medium_red"},
   {name: "Light Reds", pairing: [
     {id: "cured_meat", "weight": 2},
     {id: "poultry", "weight": 2},
@@ -100,8 +100,8 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "grains", "weight": 1},
     {id: "potato", "weight": 1}
-  ], examples: ["Pinot Noir", "Grenache", "Gamay", "St. Laurent", "Carignan", "Counoise"], id: "light_red"},
-  {name: "Rose Wines", pairing: [
+  ], examples: ["Pinot Noir", "Grenache", "Gamay"], id: "light_red"},
+  {name: "Rosé Wines", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
     {id: "poultry", "weight": 1},
@@ -125,7 +125,7 @@ const wineTypes = [
     {id: "grains", "weight": 1},
     {id: "sweet_veg", "weight": 1},
     {id: "potato", "weight": 1}
-  ], examples: ["Provencal Rose", "White Zinfandel", "Loire Valley Rose", "Pinot Noir Rose", "Syrah Rose", "Garnacha Rosado", "Bandol Rose", "Tempranillo Rose", "Saignee Method Rose"], id: "rose"},
+  ], examples: ["Provencal Rosé", "Loire Valley Rosé", "Garnacha Rosado"], id: "rose"},
   {name: "Rich Whites", pairing: [
     {id: "poultry", "weight": 2},
     {id: "fish", "weight": 1},
@@ -142,7 +142,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "grains", "weight": 1},
     {id: "potato", "weight": 1}
-  ], examples: ["Chardonnay", "Semillon", "Viognier", "Marsanne", "Roussanne"], id: "rich_white"},
+  ], examples: ["Chardonnay", "Semillon", "Viognier"], id: "rich_white"},
   {name: "Light Whites", pairing: [
     {id: "poultry", "weight": 1},
     {id: "mollusks", "weight": 1},
@@ -161,7 +161,7 @@ const wineTypes = [
     {id: "herbs", "weight": 2},
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1}
-  ], examples: ["Sauvignon Blanc", "Albarino", "Pinot Blanc", "Vermentino", "Melon de Bourgogne", "Gargenega", "Trebbiano", "Pinot Grigio"], id: "light_white"},
+  ], examples: ["Sauvignon Blanc", "Pinot Blanc", "Pinot Grigio"], id: "light_white"},
   {name: "Sparkling Wines", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "pork", "weight": 1},
@@ -185,7 +185,7 @@ const wineTypes = [
     {id: "white_starches", "weight": 1},
     {id: "potato", "weight": 1},
     {id: "fruits", "weight": 1}
-  ], examples: ["Champagne", "Prosecco", "Cremant", "Cava", "Metodo Classico", "Sparkling Wine", "Sparkling Rose"], id: "sparkling"},
+  ], examples: ["Champagne", "Prosecco", "Cava"], id: "sparkling"},
   {name: "Sweet Whites", pairing: [
     {id: "cured_meat", "weight": 2},
     {id: "lobster", "weight": 1},
@@ -208,7 +208,7 @@ const wineTypes = [
     {id: "potato", "weight": 1},
     {id: "fruits", "weight": 2},
     {id: "vanilla", "weight": 1}
-  ], examples: ["Moscato", "Riesling", "Chenin Blanc", "Gewurtztraminer", "Alsacian Pinot Gris"], id: "sweet_white"},
+  ], examples: ["Moscato", "Riesling", "Gewürztraminer"], id: "sweet_white"},
   {name: "Dessert Wines", pairing: [
     {id: "cured_meat", "weight": 1},
     {id: "smoked", "weight": 1},
@@ -219,7 +219,7 @@ const wineTypes = [
     {id: "fruits", "weight": 1},
     {id: "vanilla", "weight": 1},
     {id: "chocolate", "weight": 2}
-  ], examples: ["Port", "Sherry", "Madeira", "Vin Santo", "Muscat"], id: "dessert"},
+  ], examples: ["Port", "Sherry", "Madeira"], id: "dessert"},
 ];
 
 export default { ingredients, wineTypes };

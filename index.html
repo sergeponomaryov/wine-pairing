@@ -53,13 +53,12 @@
       </div>
       <div v-if="step == 5" key="5">
         <div v-if="selections.length">
-          <h1 v-if="results[1].match != 0">Here are my top picks 🍷</h1>
-          <h1 v-else>Here is my top pick 🍷</h1>
+          <h1>Try these wines 🍷</h1>
           
-          <div class="text-left mt-5" v-for="result in results">
+          <div class="text-left mt-5 results-wine-type" v-for="result in results">
             <div class="mt-2">
               <span class="h3">{{ result.name }}</span>
-              <span>{{ result.examples.join(', ') }}</span>
+              <span class="ml-1">like {{ result.examples.join(', ') }}</span>
             </div>
             <div class="progress-wrapper d-flex mt-2">
               <div class="progress progress-red align-self-center">
@@ -69,8 +68,9 @@
                 {{ result.match }}%
               </div>
             </div>
-            <div class="mt-2">
-              Perfect Match with: 🐷Pork, Match with: 🌶 Spicy
+            <div class="mt-2 font-weight-light" v-if="result.perfectMatches.length">
+              Perfect with {{ result.perfectMatches.join(' and ') }}
+              <!-- , Match with: {{ result.matches.join(', ') }} -->
             </div>
           </div>
           
@@ -78,7 +78,7 @@
         <div v-else>
           <h1>So you're not eating anything... 🤦‍♂️</h1>
         </div>
-        <button type="button" class="btn btn-dark btn-lg" @click="selections = []; step = 1;">Start Over</button>
+        <button type="button" class="btn btn-dark btn-lg mt-5" @click="selections = []; step = 1;">Start Over</button>
       </div>
       </transition>
     </div>
@@ -96,10 +96,13 @@
            prep: data.ingredients.filter(ingredient => ingredient.type == "prep"),
            spice: data.ingredients.filter(ingredient => ingredient.type == "spice"),
          },
-         step: 5,
-         // testing, set these to empty arrays! step = 1
-         selections: ["pork", "potato", "grilled", "black_pepper"],
-         results: rankWineTypes(["pork", "potato", "grilled", "black_pepper"])
+         step: 1,
+         selections: [],
+         results: []
+         // for testing:
+         // step: 5,
+         // selections: ["pork", "potato", "grilled", "black_pepper"],
+         // results: rankWineTypes(["pork", "potato", "grilled", "black_pepper"])
         },
         methods: {
           select(itemId) {
@@ -117,13 +120,12 @@
           }
         },
         watch: {
-          selections: function() {
-            console.log(this.selections);
-          },
           step: function() {
+            //console.log(this.selections);
             if(this.step == 5) {
               this.selections = this.selections.filter(x => x); // remove null values
               this.results = rankWineTypes(this.selections);
+              //console.log(this.results);
             } else {
               // clear the selection on this step in case user went back
               this.selections[this.step-1] = null;
