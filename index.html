@@ -27,13 +27,13 @@
     </script>
   </head>  
   <body>
-    <div class="container min-vh-100 d-flex justify-content-center" style="min-height: calc(100vh - 70px);">
+    <div class="container min-vh-100 d-flex justify-content-center">
     <div class="row align-self-center text-center" id="vapp" v-cloak>
       <transition name="fade" mode="out-in" appear>
       <div v-if="step == 1" key="1">
         <h1>Hi! What are you eating? 😋</h1>
         <h3>I will find the right food and wine pairing for you 🍷</h3>
-        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.main" @click="select(item.id)">{{ item.label }}</button>
+        <button type="button" class="btn btn-light btn-lg" v-for="item in ingredients.main" @click="select(item.id)" v-bind:disabled="step != 1">{{ item.label }}</button>
       </div>
       <div v-if="step == 2" key="2">
         <h1 v-if="selections[0] != null">What are you having it with? 🤔</h1>
@@ -97,12 +97,18 @@
          },
          step: 1,
          selections: [],
-         results: []
+         results: [],
+  	     isDisabled: false,
         },
         methods: {
           select(itemId) {
+            if (this.isDisabled) return; // Button is disabled, halt block execution
+            this.isDisabled = true;
             this.selections[this.step-1] = itemId;
             this.step++;
+            setTimeout(() => {
+              this.isDisabled = false;
+            }, 250);
           },
           back() {
             //this.step--;
@@ -116,6 +122,7 @@
         },
         watch: {
           step: function() {
+            console.log(this.selections);
             if(this.step == 5) {
               this.selections = this.selections.filter(x => x); // remove null values
               this.results = rankWineTypes(this.selections);
