@@ -1,17 +1,49 @@
 body {
   font-family: helvetica;
+  color: #2b2e32;
 }
 
 html,body {
   height: 100%;
 }
 
+h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-weight: lighter;
+  font-size: 28px;
+}
+
 .container {
   padding: 2rem !important;
 }
 
-.btn {
-  margin: 5px;
+.buttons-block { 
+  margin-top: 32px;
+}
+
+.btn-light {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: #2b2e32;
+  font-weight: lighter;
+  font-size: 20px;
+  background-color: #F6FDFF;
+  border: none;
+}
+
+.btn-light:hover {
+  color: white;
+  font-weight: lighter;
+  background: linear-gradient(90deg, rgba(255,198,108,1) 1%, rgba(255,93,93,1) 100%);
+  border: none;
 }
 
 .fade-enter-active, .fade-leave-active {
