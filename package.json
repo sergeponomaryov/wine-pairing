@@ -1,0 +1,32 @@
+{
+  "name": "wine-pairing",
+  "version": "1.0.0",
+  "description": "Wine and food pairing web app",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeponomaryov/wine-pairing.git"
+  },
+  "author": "sergeponomaryov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergeponomaryov/wine-pairing/issues"
+  },
+  "homepage": "https://github.com/sergeponomaryov/wine-pairing#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "css-loader": "^3.5.3",
+    "style-loader": "^1.2.1",
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
