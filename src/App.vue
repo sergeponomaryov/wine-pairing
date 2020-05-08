@@ -10,7 +10,7 @@
               type="button"
               class="btn btn-light btn-lg"
               v-for="item in ingredients.main"
-              :key="item"
+              :key="item.id"
               @click="select(item.id)"
             >{{ item.label }}</button>
           </div>
@@ -23,7 +23,7 @@
               type="button"
               class="btn btn-light btn-lg"
               v-for="item in ingredients.secondary"
-              :key="item"
+              :key="item.id"
               @click="select(item.id)"
             >{{ item.label }}</button>
             <button type="button" class="btn btn-light btn-lg" @click="back()">← Go back</button>
@@ -36,7 +36,7 @@
               type="button"
               class="btn btn-light btn-lg"
               v-for="item in ingredients.prep"
-              :key="item"
+              :key="item.id"
               @click="select(item.id)"
             >{{ item.label }}</button>
             <button type="button" class="btn btn-light btn-lg" @click="back()">← Go back</button>
@@ -49,7 +49,7 @@
               type="button"
               class="btn btn-light btn-lg"
               v-for="item in ingredients.spice"
-              :key="item"
+              :key="item.id"
               @click="select(item.id)"
             >{{ item.label }}</button>
             <button type="button" class="btn btn-light btn-lg" @click="back()">← Go back</button>
@@ -59,7 +59,7 @@
           <div v-if="selections.length">
             <h1>Try these wines 🍷</h1>
 
-            <div class="results-wine-type" v-for="result in results" :key="result">
+            <div class="results-wine-type" v-for="result in results" :key="result.name">
               <div class="result-name">
                 <span class="grape-type-name">{{ result.name }}</span>
                 <span class="grape-type-like">like {{ result.examples.join(', ') }}</span>
