@@ -4,7 +4,7 @@
   "description": "Wine and food pairing web app",
   "private": true,
   "scripts": {
-    "start": "webpack && webpack-dev-server --open --hot",
+    "start": "webpack-dev-server --open --hot",
     "build": "webpack --progress --hide-modules"
   },
   "repository": {
