@@ -1,0 +1,228 @@
+body {
+  font-family: helvetica;
+  color: #2b2e32;
+}
+
+html, body {
+  height: 100%;
+}
+
+h1 {
+  font-weight: normal;
+  font-size: 40px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-weight: normal;
+  font-size: 28px;
+}
+
+.container {
+  padding: 2rem !important;
+}
+
+.buttons-block {
+  margin-top: 32px;
+}
+
+.btn {
+  box-shadow: none !important;
+}
+
+.btn-light {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  color: #2b2e32;
+  font-weight: normal;
+  font-size: 20px;
+  background-color: #F6FDFF;
+  border: none;
+}
+
+.btn-light:hover, .btn-light:active, .btn-light:focus {
+  color: white !important;
+  font-weight: normal;
+  background: linear-gradient(90deg, rgba(255, 198, 108, 1) 1%, rgba(255, 93, 93, 1) 100%);
+  border: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.25s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transition: all .25s ease;
+}
+
+.slide-fade-leave-active {
+  transition: all .25s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.btn-dark {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 48px;
+  padding-right: 48px;
+  color: white;
+  font-weight: regular;
+  font-size: 20px;
+  background-color: #2b2e32;
+  border: none;
+}
+
+.btn-dark:hover {
+  background: linear-gradient(90deg, rgba(255, 198, 108, 1) 1%, rgba(255, 93, 93, 1) 100%);
+  border: none;
+}
+
+.results-wine-type {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.result-name {
+  margin-bottom: 0px;
+}
+
+.grape-type-name {
+  font-size: 28px;
+}
+
+.grape-type-like {
+  margin-left: 4px;
+  font-size: 18px;
+}
+
+.progress-percentage {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 8px;
+  vertical-align: top;
+}
+
+.result-perfect {
+  margin-top: 0px;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.progress-bold-red .progress-bar {
+  background: rgb(167, 29, 49);
+  background: linear-gradient(90deg, rgba(167, 29, 49, 1) 0%, rgba(63, 13, 18, 1) 100%);
+}
+
+.progress-bold-red {
+  background-color: #f6e9ec;
+}
+
+.progress-medium-red .progress-bar {
+  background: rgb(224, 69, 95);
+  background: linear-gradient(90deg, rgba(224, 69, 95, 1) 0%, rgba(68, 0, 11, 1) 100%);
+}
+
+.progress-medium-red {
+  background-color: #fcedef;
+}
+
+.progress-light-red .progress-bar {
+  background: rgb(219, 127, 142);
+  background: linear-gradient(90deg, rgba(219, 127, 142, 1) 0%, rgba(123, 13, 30, 1) 100%);
+}
+
+.progress-light-red {
+  background-color: #fbf2f4;
+}
+
+.progress-rose .progress-bar {
+  background: rgb(254, 174, 150);
+  background: linear-gradient(90deg, rgba(254, 174, 150, 1) 0%, rgba(254, 9, 68, 1) 100%);
+}
+
+.progress-rose {
+  background-color: #fff7f5;
+}
+
+.progress-light-white .progress-bar {
+  background: rgb(255, 233, 175);
+  background: linear-gradient(90deg, rgba(255, 233, 175, 1) 0%, rgba(255, 198, 69, 1) 100%);
+}
+
+.progress-light-white {
+  background-color: #fffcf3;
+}
+
+.progress-rich-white .progress-bar {
+  background: rgb(255, 198, 86);
+  background: linear-gradient(90deg, rgba(255, 198, 86, 1) 0%, rgba(240, 101, 67, 1) 100%);
+}
+
+.progress-rich-white {
+  background-color: #fff9ee;
+}
+
+.progress-sweet-white .progress-bar {
+  background: rgb(249, 217, 118);
+  background: linear-gradient(90deg, rgba(249, 217, 118, 1) 0%, rgba(243, 159, 134, 1) 100%);
+}
+
+.progress-sweet-white {
+  background-color: #fffbf8;
+}
+
+.progress-sparkling .progress-bar {
+  background: rgb(246, 236, 196);
+  background: linear-gradient(90deg, rgba(246, 236, 196, 1) 0%, rgba(249, 171, 164, 1) 100%);
+}
+
+.progress-sparkling {
+  background-color: #fffbf8;
+}
+
+.progress-dessert .progress-bar {
+  background: rgb(242, 193, 125);
+  background: linear-gradient(90deg, rgba(242, 193, 125, 1) 0%, rgba(164, 66, 0, 1) 100%);
+}
+
+.progress-dessert {
+  background-color: #fef9f2;
+}
+
+.progress-bar, .progress {
+  border-radius: 0.5rem;
+}
+
+.progress-wrapper {
+  display: flex;
+}
+
+.progress-wrapper .progress {
+  width: 100%;
+}
+
+.progress-percentage {
+  flex: 1;
+  font-size: 1.25rem;
+}
+
+.results-wine-type {
+  min-width: 50vw;
+}
