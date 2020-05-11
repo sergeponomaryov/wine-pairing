@@ -101,7 +101,7 @@
 <script>
 import Vue from "vue";
 import data from "./data.json";
-import { rankWineTypes } from "./logic.mjs";
+import { rankWineTypes } from "./logic.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
