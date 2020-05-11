@@ -83,7 +83,7 @@
     {"id": "exotic_spices", "weight": 2},
     {"id": "white_starches", "weight": 1},
     {"id": "potato", "weight": 1}
-  ], "examples": ["Merlot", "Sangiovese", "Zinfandel", "Cabernet Franc", "Tempranillo"], "id": "medium-red"},
+  ], "examples": ["Merlot", "Sangiovese", "Zinfandel", "Tempranillo"], "id": "medium-red"},
   {"name": "Light Reds", "pairing": [
     {"id": "cured_meat", "weight": 2},
     {"id": "poultry", "weight": 2},
