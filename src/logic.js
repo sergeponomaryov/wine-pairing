@@ -1,6 +1,6 @@
-import data from './data.json';
+const data = require('./data.json');
 
-export function rankWineTypes(selections) {
+module.exports.rankWineTypes = (selections) => {
   let scores = [];
   let matches = [];
 
