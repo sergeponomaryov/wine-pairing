@@ -101,9 +101,9 @@
 <script>
 import Vue from "vue";
 import data from "./data.json";
-import { rankWineTypes } from "./logic.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
+const logic = require("./logic.js");
 
 export default {
   data() {
@@ -144,7 +144,7 @@ export default {
     step: function() {
       if (this.step == 5) {
         this.selections = this.selections.filter(x => x); // remove null values
-        this.results = rankWineTypes(this.selections);
+        this.results = logic.rankWineTypes(this.selections);
       } else {
         // clear the selection on this step in case user went back
         this.selections[this.step - 1] = null;
