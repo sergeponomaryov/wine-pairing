@@ -83,6 +83,9 @@
               >Perfect with {{ result.perfectMatches.join(' and ') }}</div>
             </div>
 
+            <h5>Wondering where to shop for great wines? Try our sponsors <a href="https://www.kqzyfj.com/click-100146565-10570217">WineBasket</a> and <a href="https://www.jdoqocy.com/click-100146565-14043910">Splash Wines</a></h5>
+            <br>
+
           </div>
           <div v-else>
             <h1>So you're not eating anything... 🤦‍♂️</h1>
